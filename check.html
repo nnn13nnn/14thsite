@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+  <meta charset="UTF-8">
+  <title>🕵️‍♂️ Detective Challenge: Βρες το Hack!</title>
+  <style>
+    body { font-family: sans-serif; padding: 40px; background: #1a1a2e; color: white; text-align: center; }
+    .card { background: #16213e; padding: 30px; border-radius: 10px; max-width: 500px; margin: auto; box-shadow: 0 4px 15px rgba(0,0,0,0.3); }
+    button { padding: 12px 24px; font-size: 16px; background: #e94560; color: white; border: none; border-radius: 5px; cursor: pointer; margin-top: 20px; }
+    ul { text-align: left; background: #0f3460; padding: 20px 40px; border-radius: 8px; }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <h2>🕵️‍♂️ Αποστολή Ντετέκτιβ</h2>
+    <p>Μία από τις παρακάτω 4 βασικές εντολές της JavaScript έχει υποστεί <strong>Hijacking</strong> σε αυτή τη σελίδα!</p>
+    
+    <ul>
+      <li><code>console.log</code></li>
+      <li><code>window.alert</code></li>
+      <li><code>Math.random</code></li>
+      <li><code>document.getElementById</code></li>
+    </ul>
+
+    <p>Άνοιξε τα <strong>DevTools (F12 -> Console)</strong> και βρες ποια είναι!</p>
+    <button onclick="testFunctions()">Δοκίμασε τις συναρτήσεις</button>
+  </div>
+
+  <script>
+    const originalRandom = Math.random;
+    Math.random = function() {
+      console.warn("🎲 Κάποιος πείραξε τη ζαριά!");
+      return 0.777; 
+    };
+  </script>
+
+  <script>
+    function testFunctions() {
+      const box = document.getElementById('result');
+      const luckyNumber = Math.random();
+      console.log("Ο τυχαίος αριθμός είναι:", luckyNumber);
+      alert("Έτρεξαν όλες οι συναρτήσεις! Ο τυχαίος αριθμός βγήκε: " + luckyNumber);
+    }
+  </script>
+
+</body>
+</html>
